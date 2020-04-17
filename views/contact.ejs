@@ -1,0 +1,63 @@
+<!-- Head partial -->
+<%- include partials/head -%>
+
+</head>
+
+<body class="container">
+
+  <%- include partials/header -%>
+
+  <main id="contact-page">
+    <div class="ui grid">
+      <div class="sixteen wide column">
+        <h2>
+          <% if (url.endsWith('hu')) { %>Kapcsolat<% } else { %>Kontakt<% } %>
+        </h2>
+      </div>
+      <div class="sixteen wide column" id="contact-page-div1">
+        <div class="contact-page-section">
+          <h3>Mgr. Róbert Markovič</h3>
+          <div class="contact-section-tel">
+            <p>
+              <% if (url.endsWith('hu')) { %>Telefonszám<% } else { %>Tel. číslo<% } %>
+              : +421 (0) 905 230 373
+            </p>
+            <p>E-mail: <a href="mailto:reflex-reality@reflex-reality.sk">reflex-reality@reflex-reality.sk</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="sixteen wide column" id="contact-page-div2">
+        <div class="contact-page-section">
+          <h3>Ing. Laura Markovičová, PhD.</h3>
+          <div class="contact-section-tel">
+            <p>
+              <% if (url.endsWith('hu')) { %>Telefonszám<% } else { %>Tel. číslo<% } %>
+              : +421 (0) 907 628 828
+            </p>
+            <p>E-mail: <a href="mailto:markovicova@reflex-reality.sk">markovicova@reflex-reality.sk</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="sixteen wide column" id="contact-logo">
+        <div class="contact-page-section">
+          <img src="https://res.cloudinary.com/detpulnnc/image/upload/v1584965678/reflex-logo7_emmfs4.png"
+            alt="Reflex-Reality">
+          <div id="contact-logo-p">
+            <p>
+              <% if (url.endsWith('hu')) { %>Rákóczi út <% } else { %>Rákócziho ul. <% } %>
+              28/5
+            </p>
+            <p>945 01 Komárno</p>
+          </div>
+        </div>
+      </div>
+      <div class="sixteen wide column" id="contact-page-copy">
+        <div class="copyright">
+          <i class="copyright outline icon"></i>
+          2020 REFLEX-REALITY
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include partials/footer -%>

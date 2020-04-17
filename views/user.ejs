@@ -1,0 +1,34 @@
+<!-- Head partial -->
+<%- include partials/head -%>
+
+</head>
+
+<body class="container">
+
+  <!-- Header partial -->
+
+  <%- include partials/header -%>
+
+  <main class="ui grid" id="user-page">
+    <div class="sixteen wide column">
+      <h1>Vítajte, <%= user.first_name %>!</h1>
+      <div id="user-section">
+        <p>
+          <a href="/admin/add-product">Pridať novú ponuku</a>
+        </p>
+        <p>
+          <a href="/reset">Zmeniť heslo</a>
+        </p>
+      </div>
+    </div>
+    <div class="sixteen wide column" id="reset-page-copy">
+      <div class="copyright">
+        <i class="copyright outline icon"></i>
+        2020 REFLEX-REALITY
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer partial -->
+
+  <%- include partials/footer -%>

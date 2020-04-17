@@ -1,0 +1,144 @@
+<!-- Head partial -->
+<%- include partials/head -%>
+
+</head>
+
+<body class="container">
+
+  <!-- Header partial -->
+
+  <%- include partials/header -%>
+
+  <main>
+    <div class="ui grid">
+      <div class="row" id="index-row">
+        <div class="sixteen wide column" id="bg-img">
+          <div class="container" id="head-container">
+            <div class="section" id="head-section">
+              <h1>REFLEX-REALITY</h1>
+              <br>
+              <p>
+                <% if (url.endsWith("=hu")) { %>Közvetítőirodánk Komáromban és környékén ingatlanok eladásával,
+                vételével, valamint azok bérbeadásával foglalkozik.<% } else { %>Naša realitná kancelária Vám ponúka
+                sprostredkovanie kúpy, predaja a prenájmu nehnuteľností v Komárne a okolí.<% } %>
+              </p>
+              <p>
+                <% if (url.endsWith("=hu")) { %>Minden kedves ügyfelet szeretettel várunk.<% } else { %>Kontaktujte nás! Radi Vám pomôžeme.<% } %>
+              </p>
+            </div>
+            <div class="section" id="contact-section">
+              <div class="ui icon message">
+                <i class="tty icon"></i>
+                <div class="content">
+                  <div class="header">
+                    +421 (0) 905 230 373
+                  </div>
+                  <p><a href="mailto: reflex-reality@reflex-reality.sk">reflex-reality@reflex-reality.sk</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sixteen wide column" id="content-index">
+          <div class="ui section divider"></div>
+          <div class="section" id="content-section">
+            <h2>
+              <% if (url.endsWith("=hu")) { %>Kiemelt kínálatunk<% } else { %>Vybrané nehnuteľnosti<% } %>
+            </h2>
+          </div>
+          <div class="container" id="content-container">
+            <% if (indexProducts.length > 0) { %>
+            <div class="ui cards">
+              <% indexProducts.forEach(product => { %>
+              <div class="card">
+                <div class=image>
+                  <img src="<%= product.imageURL[0]%>" alt="nehnuteľnosť">
+                </div>
+                <div class="content">
+                  <a 
+                    class="header" 
+                    id="card-header" 
+                    href="<% if (url.endsWith('=hu')) { %>/all/<%= product.product_category %>/id/<%= product._id %>/lang=hu<% } else { %>/all/<%= product.product_category %>/id/<%= product._id %><% } %>"
+                  >
+                    <% if (url.endsWith('=hu')) { %><%= product.product_name_hu %><% } else { %><%= product.product_name %><% } %>
+                  </a>
+                </div>
+                <div class="content">
+                  <span class="right floated">
+                    <a 
+                      href="<% if (url.endsWith('=hu')) { %>/all/<%= product.product_category %>/id/<%= product._id %>/lang=hu<% } else { %>/all/<%= product.product_category %>/id/<%= product._id %><% } %>"
+                    >
+                      <% if (url.endsWith('hu')) { %>Tovább<% } else { %>Ďalej<% } %>
+                      <i class="arrow circle right icon"></i>
+                    </a>
+                  </span>
+                  <i class="map pin icon"></i>
+                  <% if (url.endsWith('=hu')) { %><%= product.product_location_hu %><% } else { %><%= product.product_location %><% } %>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="sixteen wide column" id="footer-index">
+          <div class="section" id="footer-section">
+            <h2>
+              <% if (url.endsWith("=hu")) { %>Tájékoztató ügyfeleink részére<% } else { %>Informácia pre klientov<% } %>
+            </h2>
+            <h3>
+              <% if (url.endsWith('hu')) { %>Irodánk biztosítja a következő tételeket, s egyben téríti költségüket:<% } else { %>Naša realitná kancelária zabezpečí a uhradí výdavky spojené s nasledovnými úkonmi:
+              <% } %>
+            </h3>
+            <ul>
+              <li>
+                <span><i class="check square icon"></i></span>
+                <% if (url.endsWith('hu')) { %>jogi folyamatok ügyintézésére megfelelő tulajdonlap
+                beszerzése,<% } else { %>vyhotovenie výpisu z listu vlastníctva použiteľného na právne úkony,<% } %>
+              </li>
+              <li>
+                <span><i class="check square icon"></i></span>
+                <% if (url.endsWith('hu')) { %>a kataszteri térkép beszerzése, amennyiben
+                szükségeltetik,<% } else { %>vyhotovenie kópie katastrálnej mapy, ak je potrebné,<% } %>
+              </li>
+              <li>
+                <span><i class="check square icon"></i></span>
+                <% if (url.endsWith('hu')) { %>az előszerződés megírása,<% } else { %>vyhotovenie písomneho návrhu
+                budúcej kúpnej zmluvy,<% } %>
+              </li>
+              <li>
+                <span><i class="check square icon"></i></span>
+                <% if (url.endsWith('hu')) { %>az adásvételi szerződés megírása,<% } else { %>vyhotovenie písomneho
+                návrhu kúpnej zmluvy,<% } %>
+              </li>
+              <li>
+                <span><i class="check square icon"></i></span>
+                <% if (url.endsWith('hu')) { %>a földhivatalba való iktatás írásbeli
+                kérvényezése,<% } else { %>vyhotovenie písomného návrhu na vklad vlastníckeho práva do katastra
+                nehnuteľností,<% } %>
+              </li>
+              <li>
+                <span><i class="check square icon"></i></span>
+                <% if (url.endsWith('hu')) { %>a földhivatalba való iktatás illetékének térítése (66 €) a tulajdonjog
+                bejegyzéséhez,<% } else { %>úhrada základného správneho poplatku (66 €) pri podaní návrhu na vklad
+                vlastníckeho práva do katastra nehnuteľností,<% } %>
+              </li>
+              <li>
+                <span><i class="check square icon"></i></span>
+                <% if (url.endsWith('hu')) { %>az adásvételi szerződésen az eladó (eladók) aláírása hitelesítésének
+                térítése, amennyiben a hitelesített aláírások száma nem haladja meg a 15-öt.<% } else { %>úhrada
+                poplatkov spojených s úradným overením podpisov predávajúcich na prevodových zmluvách určených výlučne
+                na úradné účely, ak počet overených podpisov nepresiahne 15.<% } %>
+              </li>
+            </ul>
+            <div class="copyright">
+              <i class="copyright outline icon"></i>
+              2020 REFLEX-REALITY
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include partials/footer -%>

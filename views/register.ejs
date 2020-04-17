@@ -1,0 +1,70 @@
+<!-- Head partial -->
+<%- include partials/head -%>
+
+</head>
+
+<body class="container">
+
+  <!-- Header partial -->
+
+  <%- include partials/header -%>
+
+  <main class="ui grid" id="register-page">
+    <div class="sixteen wide column">
+      <h1>Registrácia</h1>
+    </div>
+    <% if (errors) { %>
+    <div class="row" id="register-error">
+      <div class="ui error message">
+        <i class="close icon" id="register-errorClose"></i>
+        <div class="header" id="register-header">
+          Prosím, odstráňte nasledovné chyby:
+        </div>
+        <ul class="list">
+          <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+    <% } %>
+    <div class="ui form" id="register-form">
+      <form action="/register" method="POST">
+        <div class="equal width fields">
+          <div class="required field">
+            <label>Meno</label>
+            <input type="text" name="first_name" placeholder="Meno" required>
+          </div>
+          <div class="field">
+            <label>Priezvisko</label>
+            <input type="text" name="last_name" placeholder="Priezvisko">
+          </div>
+        </div>
+        <div class="required field">
+          <label>E-mailová adresa</label>
+          <input type="email" name="email" placeholder="E-mailová adresa" required>
+        </div>
+        <div class="required field">
+          <label>Heslo</label>
+          <input type="password" name="password" placeholder="Heslo" required>
+        </div>
+        <div class="required field">
+          <label>Potvrdiť heslo</label>
+          <input type="password" name="confirm_password" placeholder="Potvrdiť heslo" required>
+        </div>
+        <button class="ui button" type="submit">Registrácia</button>
+      </form>
+    </div>
+    <div class="sixteen wide column" id="contact-page-copy">
+      <div class="copyright">
+        <i class="copyright outline icon"></i>
+        2020 REFLEX-REALITY
+      </div>
+    </div>
+  </main>
+
+  <script src="/javascripts/error-register.js"></script>
+
+  <!-- Footer partial -->
+
+  <%- include partials/footer -%>

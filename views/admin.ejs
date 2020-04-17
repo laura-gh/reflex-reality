@@ -1,0 +1,71 @@
+<!-- Head partial -->
+<%- include partials/head -%>
+
+</head>
+
+<body class="container">
+
+  <!-- Header partial -->
+
+  <%- include partials/header -%>
+
+  <main class="ui grid" id="admin-page">
+    <div class="sixteen wide column">
+      <h1>Administrácia</h1>
+    </div>
+    <div id="admin-login">
+      <div class="ui placeholder segment">
+        <div class="ui two column very relaxed stackable grid">
+          <div class="column">
+            <div class="ui form">
+              <form action="/admin" method="POST">
+                <div class="field">
+                  <label>E-mailová adresa</label>
+                  <div class="ui left icon input">
+                    <input type="text" name="email" placeholder="Username" required>
+                    <i class="user icon"></i>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>Heslo</label>
+                  <div class="ui left icon input">
+                    <input type="password" name="password" required>
+                    <i class="lock icon"></i>
+                  </div>
+                </div>
+                <div>
+                  <button class="ui blue submit button" type="submit">Prihlásiť sa</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="middle aligned column">
+            <div class="ui big button" id="register-button">
+              <a href="/register">
+                <i class="signup icon"></i>
+                Registrácia
+              </a>
+            </div>
+            <div class="ui button" id="reset-button">
+              <a href="/reset">
+                Zabudli ste heslo?
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="ui vertical divider" id="adminDivider">
+          Alebo
+        </div>
+      </div>
+    </div>
+    <div class="sixteen wide column" id="contact-page-copy">
+      <div class="copyright">
+        <i class="copyright outline icon"></i>
+        2020 REFLEX-REALITY
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer partial -->
+
+  <%- include partials/footer -%>
