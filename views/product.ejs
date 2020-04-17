@@ -1,0 +1,95 @@
+<!-- Head partial -->
+<%- include partials/head -%>
+
+</head>
+
+<body class="container">
+
+  <%- include partials/header -%>
+
+  <main id="product-detail-main">
+    <div class="ui two column centered stackable grid">
+      <div class="row">
+        <a
+          href="<% if (url.endsWith('=hu')) { %>/all/<%= product.product_category %>/lang=hu<% } else { %>/all/<%= product.product_category %><% } %>">
+          <h3>
+            <i class="angle double left icon"></i>
+            <% if (url.endsWith('=hu')) { %>Vissza a többi kínálatra ebben a kategóriában<% } else { %>Späť na všetky
+            nehnuteľnosti v kategórii<% } %>
+          </h3>
+        </a>
+      </div>
+      <div class="ui section divider"></div>
+      <div class="row" id="detail-row">
+        <div class="column">
+          <div class="ui centered fluid card" id="detail-card">
+            <div class="content">
+              <div class="header" id="detail-header">
+                <% if (url.endsWith('=hu')) { %><%= product.product_name_hu %><% } else { %><%= product.product_name %><% } %>
+              </div>
+              <div class="meta">
+                <i class="map pin icon"></i>
+                <% if (url.endsWith('=hu')) { %><%= product.product_location_hu %><% } else { %><%= product.product_location %><% } %>
+              </div>
+              <div class="description">
+                <% if (url.endsWith('=hu')) { %><%= product.product_detail_hu %><% } else { %><%= product.product_detail %><% } %>
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="right floated">
+                <% if (url.endsWith('=hu')) { %><%= product.product_price_hu %><% } else { %><%= product.product_price %><% } %>
+              </span>
+              <span>
+                <i class="home icon"></i>
+                <%= product.product_area %> <% if (product.product_area) { %>m&sup2;<% } else { %> <% } %>
+              </span>
+            </div>
+            <% if (user) { %>
+            <div class="extra content">
+              <div class="ui two buttons">
+                <div class="ui basic green button">
+                  <a href="/admin/<%= product._id %>/update-product?update=true">Upraviť</a>
+                </div>
+                <div class="ui basic red button">
+                  <a href="/admin/<%= product._id %>/delete-product?delete=true">Vymazať</a>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="column">
+          <% if (product.imageURL) { %>
+          <% const images = product.imageURL %>
+          <% for(let image of images) { %>
+          <div class="ui <% if (images.length > 3) { %> small <% } else { %> medium <% } %> images PhotoCard" id="product-images">
+            <img src="<%= image %>" class="ui rounded centered image">
+          </div>
+          <% } %>
+          <% } %>
+        </div>
+      </div>
+      <div class="sixteen wide column" id="footer-detail">
+        <h2>
+          <% if (url.endsWith('=hu')) { %>Kapcsolatfelvétel<% } else { %>Kontaktujte nás<% } %>
+        </h2>
+        <p>
+          <% if (url.endsWith('=hu')) { %>Telefonszám<% } else { %>Tel. číslo<% } %>: +421 (0) 905 230 373
+        </p>
+        <p>
+          E-mail:
+          <a href="mailto: reflex-reality@reflex-reality.sk">
+            reflex-reality@reflex-reality.sk
+          </a>
+        </p>
+        <div class="copyright">
+          <i class="copyright outline icon"></i>
+          2020 REFLEX-REALITY
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/javascripts/photoCard.js"></script>
+
+  <%- include partials/footer -%>

@@ -1,0 +1,134 @@
+<!-- Head partial -->
+<%- include partials/head -%>
+
+</head>
+
+<body class="container">
+
+  <!-- Header partial -->
+
+  <%- include partials/header -%>
+
+  <main>
+    <div class="ui grid container">
+      <div class="ui two column centered grid" id="new-product">
+        <div class="column">
+          <h1><%= title %></h1>
+          <% if (errors) { %>
+          <div class="row" id="new-error">
+            <div class="ui error message">
+              <i class="close icon" id="new-errorClose"></i>
+              <div class="header" id="new-header">
+                Prosím, odstráňte nasledovné chyby:
+              </div>
+              <ul class="list">
+                <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
+          <% } %>
+          <form
+            action="/admin/<% if (updating) { %><%= product._id %>/update-product<% } else if (deleting) { %><%= product._id %>/delete-product<% } else { %>add-product<% } %>"
+            method="POST" class="ui form">
+            <div class="field">
+              <label for="product_category">Zvoliť kategóriu:</label>
+              <select id="product_category" name="product_category" required class="ui fluid dropdown">
+                <option id="bytyOpt" value="byty">Byty</option>
+                <option id="rodOpt" value="rodinne-domy">Rodinné domy</option>
+                <option id="obchOpt" value="obchodne-priestory">Obchodné priestory</option>
+                <option id="stavOpt" value="stavebne-pozemky">Stavebné pozemky</option>
+                <option id="chatOpt" value="chaty-a-zahrady">Chaty a záhrady</option>
+                <option id="ornOpt" value="orna-poda">Orná pôda</option>
+                <option id="garOpt" value="garaze">Garáže</option>
+                <option id="preOpt" value="prenajom">Prenájom</option>
+              </select>
+              <input type="hidden" id="selVal"
+                value="<% if (updating || deleting) { %><%= product.product_category %><% } %>">
+            </div>
+            <div class="field">
+              <label for="product_name">SK - Názov ponuky:</label>
+              <input type="text" id="product_name" name="product_name" placeholder="Názov ponuky" required
+                value="<% if (updating || deleting) { %><%= product.product_name %><% } %>">
+            </div>
+            <div class="field">
+              <label for="product_name_hu">HU - A kínálat megnevezése:</label>
+              <input type="text" id="product_name_hu" name="product_name_hu" placeholder="A kínálat megnevezése"
+                required value="<% if (updating || deleting) { %><%= product.product_name_hu %><% } %>">
+            </div>
+            <div class="field">
+              <label for="product_detail">SK - Popis nehnuteľnosti:</label>
+              <textarea id="product_detail" name="product_detail" rows="4" placeholder="Popis nehnuteľnosti"
+                required><% if (updating || deleting) { %><%= product.product_detail %><% } %></textarea>
+            </div>
+            <div class="field">
+              <label for="product_detail_hu">HU - Az ingatlan pontos leírása:</label>
+              <textarea id="product_detail_hu" name="product_detail_hu" rows="4"
+                placeholder="Az ingatlan pontos leírása"
+                required><% if (updating || deleting) { %><%= product.product_detail_hu %><% } %></textarea>
+            </div>
+            <div class="field">
+              <label for="product_area">Rozloha nehnuteľnosti:</label>
+              <input type="number" id="product_area" name="product_area" placeholder="Rozloha v m2" step="0.01"
+                value="<% if (updating || deleting) { %><%= product.product_area %><% } %>">
+            </div>
+            <div class="field">
+              <label for="product_location">SK - Lokalita:</label>
+              <input type="text" id="product_location" name="product_location" placeholder="Lokalita" required
+                value="<% if (updating || deleting) { %><%= product.product_location %><% } %>">
+            </div>
+            <div class="field">
+              <label for="product_location_hu">HU - Helyszín:</label>
+              <input type="text" id="product_location_hu" name="product_location_hu" placeholder="Helyszín" required
+                value="<% if (updating || deleting) { %><%= product.product_location_hu %><% } %>">
+            </div>
+            <div class="field">
+              <label for="product_price">SK - Cena:</label>
+              <input type="text" id="product_price" name="product_price" placeholder="Cena" required
+                value="<% if (updating || deleting) { %><%= product.product_price %><% } %>">
+            </div>
+            <div class="field">
+              <label for="product_price_hu">HU - Ár:</label>
+              <input type="text" id="product_price_hu" name="product_price_hu" placeholder="Ár" required
+                value="<% if (updating || deleting) { %><%= product.product_price_hu %><% } %>">
+            </div>
+            <div class="field">
+              <label for="date_of_creation">Dátum pridania:</label>
+              <input type="date" id="date_of_creation" name="date_of_creation" required value="<% if (updating || deleting) { %><%= product.date_of_creation %><% } %>">
+            </div>
+            <div class="field">
+              <label for="imageURL">URL obrázkov:</label>
+              <input name="image" type="text" id="imageURL"
+                value="<% if (updating || deleting) { %><%= product.imageURL.toString() %><% } %>" />
+            </div>
+            <div class="field">
+              <label for="imageID">ID obrázkov:</label>
+              <input name="imageID" type="text" id="imageID"
+                value="<% if (updating || deleting) { %><%= product.imageID.toString() %><% } %>" />
+            </div>
+            <button type="button" id="upload_widget" class="ui button">Nahrať obrázky</button>
+            <button type="submit" class="ui primary button"><% if (updating) { %>Upraviť
+              ponuku<% } else if (deleting) { %>Vymazať ponuku<% } else { %>Pridať ponuku<% } %></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="sixteen wide column" id="contact-page-copy">
+      <div class="copyright">
+        <i class="copyright outline icon"></i>
+        2020 REFLEX-REALITY
+      </div>
+    </div>
+  </main>
+
+
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+  <script src="/javascripts/cloudinary.js"></script>
+  <script src="/javascripts/error-new.js"></script>
+  <script src="/javascripts/categoryValue.js"></script>
+
+
+  <!-- Footer partial -->
+
+  <%- include partials/footer -%>

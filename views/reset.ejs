@@ -1,0 +1,35 @@
+<!-- Head partial -->
+<%- include partials/head -%>
+
+</head>
+
+<body class="container">
+
+  <!-- Header partial -->
+
+  <%- include partials/header -%>
+
+  <main class="ui grid" id="register-page">
+    <div class="sixteen wide column">
+      <h1>Žiadosť o zmenu hesla</h1>
+    </div>
+    <div class="ui form" id="register-form">
+      <form action="/reset" method="POST">
+        <div class="required field">
+          <label>Zadajte Vašu e-mailovú adresu:</label>
+          <input type="email" name="email" placeholder="E-mailová adresa" required>
+        </div>
+        <button class="ui button" type="submit">Odoslať</button>
+      </form>
+    </div>
+    <div class="sixteen wide column" id="reset-page-copy">
+      <div class="copyright">
+        <i class="copyright outline icon"></i>
+        2020 REFLEX-REALITY
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer partial -->
+
+  <%- include partials/footer -%>

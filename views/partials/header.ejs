@@ -1,0 +1,110 @@
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="topnav" id="myTopnav">
+  <div class="ui grid">
+    <div class="row">
+      <div class="fourteen wide column" id="nav-firstrow">
+        <img src="/images/reflex-logo6.png" id="nav-logo">
+        <div class="search-container">
+          <% if (url.endsWith('=hu')) { %>
+          <form action="/search-results/lang=hu" method="POST" id="nav-search">
+            <input type="text" placeholder="Keresés..." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+          <% } else { %>
+          <form action="/search-results" method="POST" id="nav-search">
+            <input type="text" placeholder="Hľadať..." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+          <% } %>
+        </div>
+        <a id="navKont" href="<% if (url.endsWith('=hu')) { %>/contact/lang=hu<% } else { %>/contact<% } %>">
+          <% if (url.endsWith('=hu')) { %> Kapcsolat <%  } else { %> Kontakt <% } %>
+        </a>
+        <a href="/" class="lang-button">
+          <button>
+            SK
+            <img src="/images/sk-flag.png" class="lang-img">
+          </button>
+        </a>
+        <% const currentPath = url; %>
+        <a href="<% if (currentPath === '/' || currentPath === '/search-results' || currentPath.endsWith('hu')) { %>/lang=hu<% } else { %><%= url %>/lang=hu<% } %>"
+          class="lang-button">
+          <button id="hu-lang">
+            HU
+            <img src="/images/hu-flag.png" class="lang-img">
+          </button>
+        </a>
+      </div>
+      <div class="two wide column">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <div class="sixteen wide column">
+        <a id="navHome" href="<% if (url.endsWith('=hu')) { %>/lang=hu<% } else { %>/<% } %>" class="active">
+          <% if (currentPath.endsWith('hu')) { %>Főoldal<% } else { %>Domov<% } %>
+        </a>
+        <a id="navByty" href="<% if (url.endsWith('=hu')) { %>/all/byty/lang=hu<% } else { %>/all/byty<% } %>">
+          <% if (currentPath.endsWith('hu')) { %>Lakások<% } else { %>Byty<% } %>
+        </a>
+        <a id="navRod"
+          href="<% if (url.endsWith('=hu')) { %>/all/rodinne-domy/lang=hu<% } else { %>/all/rodinne-domy<% } %>">
+          <% if (currentPath.endsWith('hu')) { %>Családi házak<% } else { %>Rodinné domy<% } %>
+        </a>
+        <a id="navObch"
+          href="<% if (url.endsWith('=hu')) { %>/all/obchodne-priestory/lang=hu<% } else { %>/all/obchodne-priestory<% } %>">
+          <% if (currentPath.endsWith('hu')) { %>Üzlethelyiségek<% } else { %>Obchodné priestory<% } %>
+        </a>
+        <a id="navStav"
+          href="<% if (url.endsWith('=hu')) { %>/all/stavebne-pozemky/lang=hu<% } else { %>/all/stavebne-pozemky<% } %>">
+          <% if (currentPath.endsWith('hu')) { %>Építkezési telkek<% } else { %>Stavebné pozemky<% } %>
+        </a>
+        <a id="navChat"
+          href="<% if (url.endsWith('=hu')) { %>/all/chaty-a-zahrady/lang=hu<% } else { %>/all/chaty-a-zahrady<% } %>">
+          <% if (currentPath.endsWith('hu')) { %>Nyaralók és kertek<% } else { %>Chaty a záhrady<% } %>
+        </a>
+        <a id="navOrn" href="<% if (url.endsWith('=hu')) { %>/all/orna-poda/lang=hu<% } else { %>/all/orna-poda<% } %>">
+          <% if (currentPath.endsWith('hu')) { %>Szántóföldek<% } else { %>Orná pôda<% } %>
+        </a>
+        <a id="navGar" href="<% if (url.endsWith('=hu')) { %>/all/garaze/lang=hu<% } else { %>/all/garaze<% } %>">
+          <% if (currentPath.endsWith('hu')) { %>Garázsok<% } else { %>Garáže<% } %>
+        </a>
+        <a id="navPre" href="<% if (url.endsWith('=hu')) { %>/all/prenajom/lang=hu<% } else { %>/all/prenajom<% } %>">
+          <% if (currentPath.endsWith('hu')) { %>Bérbeadás<% } else { %>Prenájom<% } %>
+        </a>
+
+        <div id="nav-user">
+          <% if (user) { %>
+          <a id="navProfil" href="/users/<%= user._id %>">
+            <% if (currentPath.endsWith('hu')) { %>Adatlapom<% } else { %>Môj profil<% }%>
+          </a>
+          <a href="/logout">
+            <% if (currentPath.endsWith('hu')) { %>Kijelentkezés<% } else { %>Odhlásiť sa<% }%>
+          </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% const values = Object.values(flash); %>
+<% const keys = Object.keys(flash); %>
+<% if (keys.length > 0) { %>
+<div class="ui modal" id="flash-message">
+  <div class="content">
+    <div class="ui <%= keys %> message">
+      <!-- <i class="close icon" id="flash-closeBtn"></i> -->
+      <div class="header">
+        <%= values %>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui cancel button">Zavrieť</div>
+  </div>
+</div>
+<% } %>
